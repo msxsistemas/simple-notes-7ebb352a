@@ -139,7 +139,7 @@ Deno.serve(async (req) => {
         status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
     }
-    const anonClient = createClient(supabaseUrl, Deno.env.get('SUPABASE_ANON_KEY')!);
+    const anonClient = createClient(supabaseUrl, Deno.env.get('SUPABASE_PUBLISHABLE_KEY')!);
     const { data: { user } } = await anonClient.auth.getUser(authHeader.replace('Bearer ', ''));
     if (!user) {
       return new Response(JSON.stringify({ success: false, error: 'Token inválido' }), {
