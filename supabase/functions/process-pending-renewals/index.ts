@@ -13,58 +13,69 @@ function withTimeout<T>(p: Promise<T>, ms: number): Promise<T> {
   });
 }
 
-// Sigma via VPS Relay (bypasses Cloudflare)
+// Sigma direct API (same as sigma-renew and test-panel-connection)
 async function sigmaLogin(baseUrl: string, username: string, password: string): Promise<string> {
-  await solveCloudflarViaRelay(baseUrl);
-
   const url = `${baseUrl}/api/auth/login`;
-  console.log(`🔑 Sigma (relay): login em ${url}`);
+  console.log(`🔑 Sigma: login em ${url}`);
 
-  const result = await relayFetch(url, 'POST', {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json',
-  }, {
-    username,
-    password,
-    captcha: 'not-a-robot',
-    captchaChecked: true,
-    twofactor_code: '',
-    twofactor_recovery_code: '',
-    twofactor_trusted_device_id: '',
-  });
+  const resp = await withTimeout(fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+    body: JSON.stringify({
+      username,
+      password,
+      captcha: 'not-a-robot',
+      captchaChecked: true,
+      twofactor_code: '',
+      twofactor_recovery_code: '',
+      twofactor_trusted_device_id: '',
+    }),
+  }), 15000);
 
-  if (result.status !== 200) {
-    console.error(`❌ Sigma login failed: ${result.status} - ${result.body.substring(0, 300)}`);
-    throw new Error(`Login falhou (${result.status})`);
+  if (!resp.ok) {
+    const text = await resp.text();
+    console.error(`❌ Sigma login failed: ${resp.status} - ${text.substring(0, 300)}`);
+    throw new Error(`Login falhou (${resp.status})`);
   }
 
-  let data: any;
-  try { data = JSON.parse(result.body); } catch {
-    throw new Error('Login: resposta não-JSON');
-  }
-
+  const data = await resp.json();
   if (!data.token) throw new Error('Login OK mas token não retornado.');
-  console.log(`✅ Sigma (relay): login OK`);
+  console.log(`✅ Sigma: login OK`);
   return data.token;
 }
 
 async function sigmaGet(baseUrl: string, path: string, token: string): Promise<any> {
-  const result = await relayFetch(`${baseUrl}${path}`, 'GET', {
-    'Accept': 'application/json',
-    'Authorization': `Bearer ${token}`,
-  });
-  if (result.status !== 200) throw new Error(`GET ${path} falhou: ${result.status}`);
-  return JSON.parse(result.body);
+  const resp = await withTimeout(fetch(`${baseUrl}${path}`, {
+    headers: {
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${token}`,
+    },
+  }), 15000);
+  if (!resp.ok) {
+    const text = await resp.text();
+    throw new Error(`GET ${path} falhou: ${resp.status} - ${text.substring(0, 200)}`);
+  }
+  return resp.json();
 }
 
 async function sigmaPost(baseUrl: string, path: string, token: string, body: any): Promise<any> {
-  const result = await relayFetch(`${baseUrl}${path}`, 'POST', {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json',
-    'Authorization': `Bearer ${token}`,
-  }, body);
-  if (result.status !== 200) throw new Error(`POST ${path} falhou: ${result.status} - ${result.body.substring(0, 200)}`);
-  return JSON.parse(result.body);
+  const resp = await withTimeout(fetch(`${baseUrl}${path}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${token}`,
+    },
+    body: JSON.stringify(body),
+  }), 15000);
+  if (!resp.ok) {
+    const text = await resp.text();
+    throw new Error(`POST ${path} falhou: ${resp.status} - ${text.substring(0, 200)}`);
+  }
+  return resp.json();
 }
 
 async function resolveVaultCreds(supabase: any, panel: any) {
