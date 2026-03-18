@@ -1,1 +1,13 @@
 project_id = "sqfmckhgjoojfuaovkbw"
+
+[functions.woovi-integration]
+verify_jwt = false
+
+[functions.sigma-renew]
+verify_jwt = false
+
+[functions.process-pending-renewals]
+verify_jwt = false
+
+[functions.test-panel-connection]
+verify_jwt = false
