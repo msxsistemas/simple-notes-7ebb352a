@@ -99,7 +99,7 @@ export default function AtivarPlano() {
       if (!session?.access_token) throw new Error('Sessão expirada');
 
       const resp = await fetch(
-        `https://dxxfablfqigoewcfmjzl.supabase.co/functions/v1/activate-plan`,
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/activate-plan`,
         {
           method: 'POST',
           headers: {
