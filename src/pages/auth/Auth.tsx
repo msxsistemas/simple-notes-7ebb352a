@@ -161,7 +161,7 @@ export default function Auth() {
             body: { action: 'register', user_id: signUpData.user.id },
           }).catch(() => {}); // don't block signup
         }
-        toast.success('Conta criada com sucesso! Verifique seu email para confirmar.');
+        toast.success('Conta criada com sucesso!');
       }
     } catch (error) {
       toast.error('Erro ao criar conta');
