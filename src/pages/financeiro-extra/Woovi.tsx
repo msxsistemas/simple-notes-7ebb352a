@@ -7,12 +7,13 @@ import { Switch } from "@/components/ui/switch";
 import { Key, Copy, ExternalLink, Settings, Webhook } from "lucide-react";
 import { toast } from "sonner";
 import { useWoovi } from "@/hooks/useWoovi";
+import { SUPABASE_URL } from "@/lib/constants";
 
 export default function Woovi() {
   const [appId, setAppId] = useState("");
   const { isConfigured, loading, configureWoovi } = useWoovi();
 
-  const webhookUrl = `https://dxxfablfqigoewcfmjzl.supabase.co/functions/v1/woovi-integration`;
+  const webhookUrl = `${SUPABASE_URL}/functions/v1/woovi-integration`;
 
   useEffect(() => {
     document.title = "Woovi - Gateway de Pagamentos | Gestor MSX";

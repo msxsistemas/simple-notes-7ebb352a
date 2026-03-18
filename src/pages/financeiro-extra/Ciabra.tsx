@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import { SUPABASE_URL } from "@/lib/constants";
 
 export default function Ciabra() {
   const [publicKey, setPublicKey] = useState("");
@@ -21,7 +22,7 @@ export default function Ciabra() {
   const [loading, setLoading] = useState(false);
   const [errorDetails, setErrorDetails] = useState<string | null>(null);
 
-  const webhookUrl = `https://dxxfablfqigoewcfmjzl.supabase.co/functions/v1/ciabra-integration`;
+  const webhookUrl = `${SUPABASE_URL}/functions/v1/ciabra-integration`;
 
   useEffect(() => {
     document.title = "Ciabra - Gateway de Pagamentos | Gestor Tech Play";

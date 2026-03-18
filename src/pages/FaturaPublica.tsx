@@ -169,7 +169,7 @@ export default function FaturaPublica() {
     if (!id) return;
     try {
       const resp = await fetch(
-        `https://dxxfablfqigoewcfmjzl.supabase.co/functions/v1/generate-fatura`,
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/generate-fatura`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -236,7 +236,7 @@ export default function FaturaPublica() {
     setGeneratingPix(true);
     try {
       const resp = await fetch(
-        `https://dxxfablfqigoewcfmjzl.supabase.co/functions/v1/generate-fatura`,
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/generate-fatura`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -272,7 +272,7 @@ export default function FaturaPublica() {
     setApplyingCoupon(true);
     try {
       const resp = await fetch(
-        `https://dxxfablfqigoewcfmjzl.supabase.co/functions/v1/generate-fatura`,
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/generate-fatura`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -299,7 +299,7 @@ export default function FaturaPublica() {
     setApplyingCoupon(true);
     try {
       const resp = await fetch(
-        `https://dxxfablfqigoewcfmjzl.supabase.co/functions/v1/generate-fatura`,
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/generate-fatura`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

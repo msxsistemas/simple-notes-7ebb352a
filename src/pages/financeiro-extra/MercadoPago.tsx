@@ -17,6 +17,7 @@ import {
   Unplug,
 } from "lucide-react";
 import { toast } from "sonner";
+import { SUPABASE_URL } from "@/lib/constants";
 import { useMercadoPago } from "@/hooks/useMercadoPago";
 
 export default function MercadoPago() {
@@ -26,7 +27,7 @@ export default function MercadoPago() {
 
   const { isConfigured, loading, checking, configure, disconnect } = useMercadoPago();
 
-  const webhookUrl = `https://dxxfablfqigoewcfmjzl.supabase.co/functions/v1/mercadopago-integration`;
+  const webhookUrl = `${SUPABASE_URL}/functions/v1/mercadopago-integration`;
 
   useEffect(() => {
     document.title = "Mercado Pago - Gateway de Pagamentos | Gestor Tech Play";

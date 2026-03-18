@@ -634,7 +634,7 @@ export default function ClientesListCreate() {
       }
 
       const resp = await fetch(
-        `https://dxxfablfqigoewcfmjzl.supabase.co/functions/v1/generate-fatura`,
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/generate-fatura`,
         {
           method: "POST",
           headers: {

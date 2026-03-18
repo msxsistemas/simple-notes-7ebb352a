@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
 import { Key, Copy, ExternalLink, Settings } from "lucide-react";
 import { toast } from "sonner";
+import { SUPABASE_URL } from "@/lib/constants";
 import { useV3Pay } from "@/hooks/useV3Pay";
 
 export default function V3Pay() {
@@ -35,7 +36,7 @@ export default function V3Pay() {
     toast.success(`${label} copiado!`);
   };
 
-  const webhookUrl = `https://dxxfablfqigoewcfmjzl.supabase.co/functions/v1/v3pay-integration`;
+  const webhookUrl = `${SUPABASE_URL}/functions/v1/v3pay-integration`;
 
   return (
     <div>

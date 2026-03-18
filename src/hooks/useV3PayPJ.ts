@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { SUPABASE_URL } from "@/lib/constants";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
 import { toast } from "sonner";
 
@@ -30,7 +31,7 @@ export function useV3PayPJ() {
       if (!session?.access_token) throw new Error("Sessão expirada. Faça login novamente.");
 
       const resp = await fetch(
-        `https://dxxfablfqigoewcfmjzl.supabase.co/functions/v1/v3pay-pj-integration`,
+        `${SUPABASE_URL}/functions/v1/v3pay-pj-integration`,
         {
           method: "POST",
           headers: {

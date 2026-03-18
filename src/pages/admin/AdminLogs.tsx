@@ -29,12 +29,12 @@ export default function AdminLogs() {
       try {
         const { data: { session } } = await supabase.auth.getSession();
         const [r1, r2] = await Promise.all([
-          fetch(`https://dxxfablfqigoewcfmjzl.supabase.co/functions/v1/admin-api`, {
+          fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/admin-api`, {
             method: "POST",
             headers: { "Content-Type": "application/json", Authorization: `Bearer ${session?.access_token}` },
             body: JSON.stringify({ action: "list_logs", tipo: "painel" }),
           }),
-          fetch(`https://dxxfablfqigoewcfmjzl.supabase.co/functions/v1/admin-api`, {
+          fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/admin-api`, {
             method: "POST",
             headers: { "Content-Type": "application/json", Authorization: `Bearer ${session?.access_token}` },
             body: JSON.stringify({ action: "list_logs", tipo: "sistema" }),

@@ -82,7 +82,7 @@ const provedorTokenPlaceholders: Record<string, string> = {
   woovi: "Q2xpZW50X0lkOjZjYzc...",
 };
 
-const SUPABASE_PROJECT_ID = "dxxfablfqigoewcfmjzl";
+const SUPABASE_PROJECT_ID = import.meta.env.VITE_SUPABASE_PROJECT_ID || "sqfmckhgjoojfuaovkbw";
 
 const provedorWebhookEndpoints: Record<string, string> = {
   asaas: "asaas-integration",
