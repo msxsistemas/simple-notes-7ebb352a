@@ -5,78 +5,12 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
-// ── VPS Relay helper ──
-
 function withTimeout<T>(p: Promise<T>, ms: number): Promise<T> {
   return new Promise((resolve, reject) => {
     const t = setTimeout(() => reject(new Error(`Timeout após ${ms}ms`)), ms);
     p.then((v) => { clearTimeout(t); resolve(v); })
      .catch((e) => { clearTimeout(t); reject(e); });
   });
-}
-
-async function relayFetch(
-  url: string,
-  method: string,
-  headers: Record<string, string>,
-  body?: any,
-): Promise<{ status: number; body: string }> {
-  const VPS_RELAY_URL = Deno.env.get('VPS_RELAY_URL');
-  const VPS_RELAY_SECRET = Deno.env.get('VPS_RELAY_SECRET');
-
-  if (!VPS_RELAY_URL || !VPS_RELAY_SECRET) {
-    throw new Error('VPS_RELAY_URL ou VPS_RELAY_SECRET não configurados');
-  }
-
-  const resp = await withTimeout(fetch(`${VPS_RELAY_URL}/proxy`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Relay-Secret': VPS_RELAY_SECRET,
-    },
-    body: JSON.stringify({
-      url,
-      method,
-      headers,
-      body: body !== undefined ? (typeof body === 'string' ? body : JSON.stringify(body)) : undefined,
-    }),
-  }), 30000);
-
-  if (!resp.ok) {
-    const text = await resp.text();
-    throw new Error(`VPS Relay erro: ${resp.status} - ${text.substring(0, 200)}`);
-  }
-
-  const data = await resp.json();
-  return { status: data.status, body: data.body };
-}
-
-async function solveCloudflarViaRelay(baseUrl: string): Promise<void> {
-  const VPS_RELAY_URL = Deno.env.get('VPS_RELAY_URL');
-  const VPS_RELAY_SECRET = Deno.env.get('VPS_RELAY_SECRET');
-
-  if (!VPS_RELAY_URL || !VPS_RELAY_SECRET) return;
-
-  console.log(`🛡️ Sigma: resolvendo Cloudflare para ${baseUrl}...`);
-  try {
-    const resp = await withTimeout(fetch(`${VPS_RELAY_URL}/flaresolverr`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Relay-Secret': VPS_RELAY_SECRET,
-      },
-      body: JSON.stringify({ url: baseUrl, maxTimeout: 60000 }),
-    }), 90000);
-
-    const data = await resp.json();
-    if (data.success) {
-      console.log(`✅ Cloudflare resolvido! ${data.cached ? '(cache)' : '(novo)'}`);
-    } else {
-      console.warn(`⚠️ FlareSolverr falhou: ${data.error || 'desconhecido'}`);
-    }
-  } catch (e: any) {
-    console.warn(`⚠️ FlareSolverr indisponível: ${e.message}`);
-  }
 }
 
 // Sigma via VPS Relay (bypasses Cloudflare)
