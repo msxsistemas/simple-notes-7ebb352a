@@ -1,0 +1,1 @@
+UPDATE produtos SET gateway = 'v3pay' WHERE user_id = 'b68d8d19-6931-4a7c-92c0-74965b2c7b54' AND gateway = 'mercadopago';

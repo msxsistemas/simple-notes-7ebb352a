@@ -1,0 +1,2 @@
+INSERT INTO system_templates (tipo, nome, mensagem, ativo)
+VALUES ('fatura_criada', 'Fatura Criada', '{saudacao}. *{nome_cliente}*{br}{br}📄 *Sua fatura foi gerada com sucesso!*{br}{br}*DADOS DA FATURA*{br}-------------------------------{br}◆ *Vencimento:* *{vencimento}*{br}◆ {nome_plano}{br}◆ Desconto: {desconto}{br}{br}💰 Chave PIX: {pix}', true);

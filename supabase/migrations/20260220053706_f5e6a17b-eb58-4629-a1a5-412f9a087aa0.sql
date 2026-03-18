@@ -1,0 +1,3 @@
+INSERT INTO public.system_templates (tipo, nome, mensagem, ativo) VALUES
+('indicacao_meta', 'Meta de Indicações', 'Parabéns {nome}! 🎉{br}{br}Você atingiu a meta de indicações e ganhou um desconto de {desconto} na sua próxima fatura!{br}{br}🏆 Ciclo {ciclo} completado.{br}{br}Continue indicando para ganhar mais descontos! 🚀', true),
+('indicacao_convite', 'Convite por Indicação', 'Olá {nome}! 👋{br}{br}O cliente {indicado} acabou de se cadastrar através da sua indicação! 🎉{br}{br}Continue indicando para alcançar sua meta e ganhar descontos! 💰', true);

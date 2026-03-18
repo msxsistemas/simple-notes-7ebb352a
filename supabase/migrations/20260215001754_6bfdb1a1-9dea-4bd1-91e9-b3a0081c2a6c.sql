@@ -1,0 +1,7 @@
+
+DELETE FROM clientes WHERE id IN (
+  'd481b9c0-5ed3-4b9d-8331-286ad668a222',
+  '7a75e5f6-03e3-41df-9ce7-b873199631c9',
+  '33c173a6-cbc0-4514-801c-d9efc0273b85',
+  '9aa71be2-a34d-477d-a234-86d333355377'
+);

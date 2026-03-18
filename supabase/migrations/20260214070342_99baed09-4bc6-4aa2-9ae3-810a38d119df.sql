@@ -1,0 +1,1 @@
+DELETE FROM whatsapp_messages WHERE id = 'e2d05df2-d7f8-4371-a208-e119c5205a22';

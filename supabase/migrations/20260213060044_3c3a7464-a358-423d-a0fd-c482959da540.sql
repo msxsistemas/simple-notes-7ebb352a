@@ -1,0 +1,1 @@
+UPDATE auth.users SET banned_until = NULL WHERE id = '976268dc-af38-4ec7-b87b-7fa3dcdfa896';

@@ -1,0 +1,1 @@
+ALTER TABLE public.woovi_config ADD CONSTRAINT woovi_config_user_id_key UNIQUE (user_id);

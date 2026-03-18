@@ -1,0 +1,1 @@
+UPDATE system_templates SET tipo = 'aniversario_cliente' WHERE tipo = 'aniversario';

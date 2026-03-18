@@ -1,0 +1,1 @@
+ALTER TABLE public.produtos ADD COLUMN IF NOT EXISTS painel_id UUID REFERENCES public.paineis_integracao(id) ON DELETE SET NULL;

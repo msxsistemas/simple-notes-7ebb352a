@@ -1,0 +1,31 @@
+project_id = "dxxfablfqigoewcfmjzl"
+
+[functions.mercadopago-integration]
+verify_jwt = false
+
+[functions.woovi-integration]
+verify_jwt = false
+
+[functions.v3pay-integration]
+verify_jwt = false
+
+[functions.v3pay-pj-integration]
+verify_jwt = false
+
+[functions.asaas-integration]
+verify_jwt = false
+
+[functions.ciabra-integration]
+verify_jwt = false
+
+[functions.auto-renew-client]
+verify_jwt = false
+
+[functions.auto-notify-clients]
+verify_jwt = false
+
+[functions.process-pending-renewals]
+verify_jwt = false
+
+[functions.activate-plan]
+verify_jwt = false

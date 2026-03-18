@@ -1,0 +1,324 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 220 20% 14%;
+    --foreground: 210 40% 98%;
+
+    --card: 220 18% 18%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 220 18% 18%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 217 91% 53%;
+    --primary-active: 217 91% 48%;
+
+    --secondary: 220 18% 20%;
+    --secondary-foreground: 215 20% 84%;
+    --secondary-hover: 220 14% 27%;
+
+    --muted: 220 15% 22%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 220 15% 25%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --destructive-hover: 0 84% 53%;
+
+    --border: 220 15% 25%;
+    --input: 220 15% 22%;
+    --ring: 217 91% 60%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 220 20% 10%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 15% 18%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 220 15% 18%;
+    --sidebar-ring: 217 91% 60%;
+
+    /* Brand and support tokens */
+    --brand: 217 91% 60%;
+    --brand-2: 217 91% 48%;
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+    --success-hover: 142 71% 37%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 220 20% 10%;
+    --warning-hover: 38 92% 42%;
+    --info: 217 91% 60%;
+    --info-foreground: 0 0% 100%;
+    
+    /* Dashboard card colors */
+    --dashboard-green: 142 71% 45%;
+    --dashboard-red: 0 84% 60%;
+    --dashboard-purple: 300 70% 40%;
+    --dashboard-cyan: 217 91% 60%;
+    
+    /* Dashboard chart colors */
+    --dashboard-primary: 217 91% 60%;
+    --dashboard-secondary: 217 91% 48%;
+    --dashboard-danger: 0 84% 60%;
+    --dashboard-success: 142 71% 45%;
+    --dashboard-warning: 38 92% 50%;
+    --dashboard-neutral: 215 16% 47%;
+
+    /* Effects */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-active)));
+    --shadow-elegant: 0 10px 30px -10px hsl(var(--primary) / 0.3);
+    --shadow-glow: 0 0 40px hsl(var(--primary-active) / 0.4);
+  }
+
+  .dark {
+    --background: 220 20% 14%;
+    --foreground: 210 40% 98%;
+
+    --card: 220 18% 18%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 220 18% 18%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 217 91% 53%;
+    --primary-active: 217 91% 48%;
+
+    --secondary: 220 18% 20%;
+    --secondary-foreground: 215 20% 84%;
+    --secondary-hover: 220 14% 27%;
+
+    --muted: 220 15% 22%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 220 15% 25%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --destructive-hover: 0 84% 53%;
+
+    --border: 220 15% 25%;
+    --input: 220 15% 22%;
+    --ring: 217 91% 60%;
+
+    --sidebar-background: 220 20% 10%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 15% 18%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 220 15% 18%;
+    --sidebar-ring: 217 91% 60%;
+
+    /* Brand and support tokens (dark) */
+    --brand: 217 91% 60%;
+    --brand-2: 217 91% 48%;
+    --success: 142 71% 50%;
+    --success-foreground: 0 0% 100%;
+    --success-hover: 142 71% 42%;
+    --warning: 38 92% 55%;
+    --warning-foreground: 220 20% 10%;
+    --warning-hover: 38 92% 47%;
+    --info: 217 91% 60%;
+    --info-foreground: 0 0% 100%;
+    
+    /* Dashboard card colors */
+    --dashboard-green: 142 71% 45%;
+    --dashboard-red: 0 84% 60%;
+    --dashboard-purple: 300 70% 40%;
+    --dashboard-cyan: 217 91% 60%;
+    
+    /* Dashboard chart colors (dark) */
+    --dashboard-primary: 217 91% 60%;
+    --dashboard-secondary: 217 91% 48%;
+    --dashboard-danger: 0 84% 55%;
+    --dashboard-success: 142 71% 50%;
+    --dashboard-warning: 38 92% 60%;
+    --dashboard-neutral: 215 16% 52%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-active)));
+    --shadow-elegant: 0 10px 30px -10px hsl(var(--primary) / 0.35);
+    --shadow-glow: 0 0 40px hsl(var(--primary-active) / 0.45);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  .story-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: hsl(var(--primary));
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+  }
+  .story-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+  .hover-scale { @apply transition-transform duration-200 hover:scale-105; }
+  .pulse { @apply animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]; }
+  
+  /* Mobile-friendly utilities */
+  .mobile-scroll-x {
+    @apply overflow-x-auto overflow-y-visible;
+    scrollbar-width: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .mobile-scroll-x::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  .mobile-scroll-x::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+    border-radius: 4px;
+  }
+  
+  .mobile-scroll-x::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, hsl(var(--brand)), hsl(var(--brand-2)));
+    border-radius: 4px;
+    border: 1px solid hsl(var(--muted));
+  }
+  
+  .mobile-table {
+    @apply min-w-full;
+  }
+  
+  @media (max-width: 768px) {
+    .mobile-table {
+      @apply min-w-[700px];
+    }
+  }
+  
+  .touch-friendly {
+    @apply min-h-[44px] min-w-[44px];
+  }
+  
+  /* PWA standalone optimizations */
+  @media (display-mode: standalone) {
+    body {
+      overscroll-behavior-y: contain;
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    /* Safe area insets for notched devices */
+    .p-mobile, main {
+      padding-left: max(0.75rem, env(safe-area-inset-left));
+      padding-right: max(0.75rem, env(safe-area-inset-right));
+    }
+  }
+  
+  .text-mobile-sm { @apply text-xs sm:text-sm; }
+  .text-mobile-base { @apply text-sm sm:text-base; }
+  .text-mobile-lg { @apply text-base sm:text-lg; }
+  .text-mobile-xl { @apply text-lg sm:text-xl; }
+  .text-mobile-2xl { @apply text-xl sm:text-2xl; }
+  
+  .p-mobile { @apply p-3 sm:p-4 md:p-6; }
+  .px-mobile { @apply px-3 sm:px-4 md:px-6; }
+  .py-mobile { @apply py-3 sm:py-4 md:py-6; }
+}
+
+/* Custom Scrollbar Styles */
+@layer base {
+  /* Webkit Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.3);
+    border-radius: 999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.5);
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-button {
+    display: none;
+  }
+
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--muted-foreground) / 0.3) transparent;
+  }
+}
+
+/* Collapsible Animations */
+@keyframes collapsible-down {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: var(--radix-collapsible-content-height);
+    opacity: 1;
+  }
+}
+
+@keyframes collapsible-up {
+  from {
+    height: var(--radix-collapsible-content-height);
+    opacity: 1;
+  }
+  to {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+[data-radix-collapsible-content] {
+  overflow: hidden;
+}
+
+[data-radix-collapsible-content][data-state="open"] {
+  animation: collapsible-down 0.5s ease-out;
+}
+
+[data-radix-collapsible-content][data-state="closed"] {
+  animation: collapsible-up 0.4s ease-out;
+}
+
+/* Lovable MatrixPrompt: ocultar badge */
+#lovable-badge { display: none !important; }

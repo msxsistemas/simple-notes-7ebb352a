@@ -1,0 +1,1 @@
+DELETE FROM system_gateways WHERE provedor = 'stripe';

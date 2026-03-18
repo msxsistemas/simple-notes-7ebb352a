@@ -1,0 +1,1 @@
+ALTER TABLE public.mercadopago_config ADD COLUMN IF NOT EXISTS public_key_hash text;

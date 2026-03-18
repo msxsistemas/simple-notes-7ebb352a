@@ -1,0 +1,1 @@
+ALTER TABLE public.system_config ADD COLUMN zapi_integration_token text DEFAULT NULL;
