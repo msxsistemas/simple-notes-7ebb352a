@@ -560,7 +560,7 @@ Deno.serve(async (req) => {
           // Log
           const authHeader = req.headers.get("authorization");
           if (authHeader) {
-            const anonClient = createClient(supabaseUrl, Deno.env.get("SUPABASE_ANON_KEY")!);
+            const anonClient = createClient(supabaseUrl, Deno.env.get("SUPABASE_PUBLISHABLE_KEY")!);
             const { data: { user } } = await anonClient.auth.getUser(authHeader.replace("Bearer ", ""));
             if (user?.id) {
               await supabase.from("logs_painel").insert({

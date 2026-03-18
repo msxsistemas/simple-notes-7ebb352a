@@ -2042,7 +2042,7 @@ Deno.serve(async (req) => {
         let rpcName = 'admin_get_gateway_secret';
         // If the caller is using a user token (not service role), use user-scoped RPC
         if (userToken && userToken !== serviceRoleKey && userToken.startsWith('eyJ')) {
-          const supabaseAnonKey = Deno.env.get("SUPABASE_ANON_KEY")!;
+          const supabaseAnonKey = Deno.env.get("SUPABASE_PUBLISHABLE_KEY")!;
           vaultClient = createClient(Deno.env.get("SUPABASE_URL")!, supabaseAnonKey, {
             global: { headers: { Authorization: `Bearer ${userToken}` } },
           });
