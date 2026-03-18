@@ -1872,6 +1872,36 @@ export type Database = {
         }
         Relationships: []
       }
+      woovi_config: {
+        Row: {
+          app_id_hash: string
+          created_at: string | null
+          id: string
+          is_configured: boolean | null
+          updated_at: string | null
+          user_id: string
+          webhook_url: string | null
+        }
+        Insert: {
+          app_id_hash: string
+          created_at?: string | null
+          id?: string
+          is_configured?: boolean | null
+          updated_at?: string | null
+          user_id: string
+          webhook_url?: string | null
+        }
+        Update: {
+          app_id_hash?: string
+          created_at?: string | null
+          id?: string
+          is_configured?: boolean | null
+          updated_at?: string | null
+          user_id?: string
+          webhook_url?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
