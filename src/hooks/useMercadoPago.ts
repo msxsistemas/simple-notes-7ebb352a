@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { SUPABASE_URL } from "@/lib/constants";
 import { useCurrentUser } from "@/hooks/useCurrentUser";
 import { toast } from "sonner";
 
