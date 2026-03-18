@@ -38,7 +38,14 @@ Deno.serve(async (req) => {
           });
         }
 
-        const userClient = createClient(supabaseUrl, Deno.env.get("SUPABASE_PUBLISHABLE_KEY")!, {
+        if (!supabaseAnonKey) {
+          return new Response(JSON.stringify({ error: "Supabase client configuration is missing" }), {
+            status: 500,
+            headers: { ...corsHeaders, "Content-Type": "application/json" },
+          });
+        }
+
+        const userClient = createClient(supabaseUrl, supabaseAnonKey, {
           global: { headers: { Authorization: authHeader } },
         });
         const { data: { user } } = await userClient.auth.getUser();
