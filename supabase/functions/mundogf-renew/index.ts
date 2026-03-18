@@ -902,7 +902,7 @@ Deno.serve(async (req) => {
         const authHeader = req.headers.get('authorization');
         let userId: string | null = null;
         if (authHeader) {
-          const anonClient = createClient(supabaseUrl, Deno.env.get('SUPABASE_ANON_KEY')!);
+          const anonClient = createClient(supabaseUrl, Deno.env.get('SUPABASE_PUBLISHABLE_KEY')!);
           const { data: { user } } = await anonClient.auth.getUser(authHeader.replace('Bearer ', ''));
           userId = user?.id || null;
         }
