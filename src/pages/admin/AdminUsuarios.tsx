@@ -271,7 +271,7 @@ export default function AdminUsuarios() {
     try {
       const { data: { session } } = await supabase.auth.getSession();
       const resp = await fetch(
-        `https://dxxfablfqigoewcfmjzl.supabase.co/functions/v1/admin-api`,
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/admin-api`,
         {
           method: "POST",
           headers: {

@@ -59,7 +59,7 @@ export default function AdminAssinaturas() {
 
     try {
       const { data: { session } } = await supabase.auth.getSession();
-      const resp = await fetch(`https://dxxfablfqigoewcfmjzl.supabase.co/functions/v1/admin-api`, {
+      const resp = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/admin-api`, {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${session?.access_token}` },
         body: JSON.stringify({ action: "list_users" }),

@@ -36,7 +36,7 @@ export default function V3Pay() {
     toast.success(`${label} copiado!`);
   };
 
-  const webhookUrl = `https://dxxfablfqigoewcfmjzl.supabase.co/functions/v1/v3pay-integration`;
+  const webhookUrl = `${SUPABASE_URL}/functions/v1/v3pay-integration`;
 
   return (
     <div>

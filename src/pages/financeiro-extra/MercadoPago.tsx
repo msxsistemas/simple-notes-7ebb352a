@@ -27,7 +27,7 @@ export default function MercadoPago() {
 
   const { isConfigured, loading, checking, configure, disconnect } = useMercadoPago();
 
-  const webhookUrl = `https://dxxfablfqigoewcfmjzl.supabase.co/functions/v1/mercadopago-integration`;
+  const webhookUrl = `${SUPABASE_URL}/functions/v1/mercadopago-integration`;
 
   useEffect(() => {
     document.title = "Mercado Pago - Gateway de Pagamentos | Gestor Tech Play";

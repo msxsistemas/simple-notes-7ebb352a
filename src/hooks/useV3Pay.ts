@@ -31,7 +31,7 @@ export function useV3Pay() {
       if (!session?.access_token) throw new Error("Sessão expirada. Faça login novamente.");
 
       const resp = await fetch(
-        `https://dxxfablfqigoewcfmjzl.supabase.co/functions/v1/v3pay-integration`,
+        `${SUPABASE_URL}/functions/v1/v3pay-integration`,
         {
           method: "POST",
           headers: {

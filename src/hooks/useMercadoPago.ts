@@ -43,10 +43,10 @@ export function useMercadoPago() {
       const { data: { session } } = await supabase.auth.getSession();
       if (!session?.access_token) throw new Error("Sessão expirada. Faça login novamente.");
 
-      const webhookUrl = `https://dxxfablfqigoewcfmjzl.supabase.co/functions/v1/mercadopago-integration`;
+      const webhookUrl = `${SUPABASE_URL}/functions/v1/mercadopago-integration`;
 
       const resp = await fetch(
-        `https://dxxfablfqigoewcfmjzl.supabase.co/functions/v1/mercadopago-integration`,
+        `${SUPABASE_URL}/functions/v1/mercadopago-integration`,
         {
           method: "POST",
           headers: {
