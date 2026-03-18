@@ -280,7 +280,7 @@ Deno.serve(async (req) => {
     let panelUser = panel.usuario;
     let panelPass = panel.senha;
     if (panelUser === 'vault' || panelPass === 'vault') {
-      const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY')!;
+      const supabaseAnonKey = Deno.env.get('SUPABASE_PUBLISHABLE_KEY')!;
       const vaultClient = userToken
         ? createClient(supabaseUrl, supabaseAnonKey, { global: { headers: { Authorization: `Bearer ${userToken}` } } })
         : supabase;
