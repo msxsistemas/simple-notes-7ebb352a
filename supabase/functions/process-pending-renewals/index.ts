@@ -5,8 +5,6 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
-// ── VPS Relay helper ──
-
 function withTimeout<T>(p: Promise<T>, ms: number): Promise<T> {
   return new Promise((resolve, reject) => {
     const t = setTimeout(() => reject(new Error(`Timeout após ${ms}ms`)), ms);
@@ -15,122 +13,69 @@ function withTimeout<T>(p: Promise<T>, ms: number): Promise<T> {
   });
 }
 
-async function relayFetch(
-  url: string,
-  method: string,
-  headers: Record<string, string>,
-  body?: any,
-): Promise<{ status: number; body: string }> {
-  const VPS_RELAY_URL = Deno.env.get('VPS_RELAY_URL');
-  const VPS_RELAY_SECRET = Deno.env.get('VPS_RELAY_SECRET');
+// Sigma direct API (same as sigma-renew and test-panel-connection)
+async function sigmaLogin(baseUrl: string, username: string, password: string): Promise<string> {
+  const url = `${baseUrl}/api/auth/login`;
+  console.log(`🔑 Sigma: login em ${url}`);
 
-  if (!VPS_RELAY_URL || !VPS_RELAY_SECRET) {
-    throw new Error('VPS_RELAY_URL ou VPS_RELAY_SECRET não configurados');
-  }
-
-  const resp = await withTimeout(fetch(`${VPS_RELAY_URL}/proxy`, {
+  const resp = await withTimeout(fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'X-Relay-Secret': VPS_RELAY_SECRET,
+      'Accept': 'application/json',
     },
     body: JSON.stringify({
-      url,
-      method,
-      headers,
-      body: body !== undefined ? (typeof body === 'string' ? body : JSON.stringify(body)) : undefined,
+      username,
+      password,
+      captcha: 'not-a-robot',
+      captchaChecked: true,
+      twofactor_code: '',
+      twofactor_recovery_code: '',
+      twofactor_trusted_device_id: '',
     }),
-  }), 30000);
+  }), 15000);
 
   if (!resp.ok) {
     const text = await resp.text();
-    throw new Error(`VPS Relay erro: ${resp.status} - ${text.substring(0, 200)}`);
+    console.error(`❌ Sigma login failed: ${resp.status} - ${text.substring(0, 300)}`);
+    throw new Error(`Login falhou (${resp.status})`);
   }
 
   const data = await resp.json();
-  return { status: data.status, body: data.body };
-}
-
-async function solveCloudflarViaRelay(baseUrl: string): Promise<void> {
-  const VPS_RELAY_URL = Deno.env.get('VPS_RELAY_URL');
-  const VPS_RELAY_SECRET = Deno.env.get('VPS_RELAY_SECRET');
-
-  if (!VPS_RELAY_URL || !VPS_RELAY_SECRET) return;
-
-  console.log(`🛡️ Sigma: resolvendo Cloudflare para ${baseUrl}...`);
-  try {
-    const resp = await withTimeout(fetch(`${VPS_RELAY_URL}/flaresolverr`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Relay-Secret': VPS_RELAY_SECRET,
-      },
-      body: JSON.stringify({ url: baseUrl, maxTimeout: 60000 }),
-    }), 90000);
-
-    const data = await resp.json();
-    if (data.success) {
-      console.log(`✅ Cloudflare resolvido! ${data.cached ? '(cache)' : '(novo)'}`);
-    } else {
-      console.warn(`⚠️ FlareSolverr falhou: ${data.error || 'desconhecido'}`);
-    }
-  } catch (e: any) {
-    console.warn(`⚠️ FlareSolverr indisponível: ${e.message}`);
-  }
-}
-
-// Sigma via VPS Relay (bypasses Cloudflare)
-async function sigmaLogin(baseUrl: string, username: string, password: string): Promise<string> {
-  await solveCloudflarViaRelay(baseUrl);
-
-  const url = `${baseUrl}/api/auth/login`;
-  console.log(`🔑 Sigma (relay): login em ${url}`);
-
-  const result = await relayFetch(url, 'POST', {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json',
-  }, {
-    username,
-    password,
-    captcha: 'not-a-robot',
-    captchaChecked: true,
-    twofactor_code: '',
-    twofactor_recovery_code: '',
-    twofactor_trusted_device_id: '',
-  });
-
-  if (result.status !== 200) {
-    console.error(`❌ Sigma login failed: ${result.status} - ${result.body.substring(0, 300)}`);
-    throw new Error(`Login falhou (${result.status})`);
-  }
-
-  let data: any;
-  try { data = JSON.parse(result.body); } catch {
-    throw new Error('Login: resposta não-JSON');
-  }
-
   if (!data.token) throw new Error('Login OK mas token não retornado.');
-  console.log(`✅ Sigma (relay): login OK`);
+  console.log(`✅ Sigma: login OK`);
   return data.token;
 }
 
 async function sigmaGet(baseUrl: string, path: string, token: string): Promise<any> {
-  const result = await relayFetch(`${baseUrl}${path}`, 'GET', {
-    'Accept': 'application/json',
-    'Authorization': `Bearer ${token}`,
-  });
-  if (result.status !== 200) throw new Error(`GET ${path} falhou: ${result.status}`);
-  return JSON.parse(result.body);
+  const resp = await withTimeout(fetch(`${baseUrl}${path}`, {
+    headers: {
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${token}`,
+    },
+  }), 15000);
+  if (!resp.ok) {
+    const text = await resp.text();
+    throw new Error(`GET ${path} falhou: ${resp.status} - ${text.substring(0, 200)}`);
+  }
+  return resp.json();
 }
 
 async function sigmaPost(baseUrl: string, path: string, token: string, body: any): Promise<any> {
-  const result = await relayFetch(`${baseUrl}${path}`, 'POST', {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json',
-    'Authorization': `Bearer ${token}`,
-  }, body);
-  if (result.status !== 200) throw new Error(`POST ${path} falhou: ${result.status} - ${result.body.substring(0, 200)}`);
-  return JSON.parse(result.body);
+  const resp = await withTimeout(fetch(`${baseUrl}${path}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${token}`,
+    },
+    body: JSON.stringify(body),
+  }), 15000);
+  if (!resp.ok) {
+    const text = await resp.text();
+    throw new Error(`POST ${path} falhou: ${resp.status} - ${text.substring(0, 200)}`);
+  }
+  return resp.json();
 }
 
 async function resolveVaultCreds(supabase: any, panel: any) {
