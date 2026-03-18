@@ -12,6 +12,7 @@ import {
   Settings,
 } from "lucide-react";
 import { toast } from "sonner";
+import { SUPABASE_URL } from "@/lib/constants";
 import { useAssas } from "@/hooks/useAssas";
 
 export default function Assas() {
