@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import { SUPABASE_URL } from "@/lib/constants";
 
 export default function Ciabra() {
   const [publicKey, setPublicKey] = useState("");
