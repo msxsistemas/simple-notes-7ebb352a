@@ -32,7 +32,7 @@ export const useWoovi = () => {
       if (!session?.access_token) throw new Error("Sessão expirada. Faça login novamente.");
 
       const resp = await fetch(
-        `https://dxxfablfqigoewcfmjzl.supabase.co/functions/v1/woovi-integration`,
+        `${SUPABASE_URL}/functions/v1/woovi-integration`,
         {
           method: "POST",
           headers: {
