@@ -23,7 +23,7 @@ async function getVaultSecret(supabaseAdmin: any, userId: string, gateway: strin
 async function storeVaultSecret(userToken: string, userId: string, gateway: string, secretName: string, secretValue: string): Promise<void> {
   const userClient = createClient(
     Deno.env.get('SUPABASE_URL') ?? '',
-    Deno.env.get('SUPABASE_ANON_KEY') ?? Deno.env.get('SUPABASE_PUBLISHABLE_KEY') ?? '',
+    Deno.env.get('SUPABASE_PUBLISHABLE_KEY') ?? '',
     { global: { headers: { Authorization: `Bearer ${userToken}` } } }
   );
   

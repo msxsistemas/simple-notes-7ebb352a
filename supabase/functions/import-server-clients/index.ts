@@ -771,7 +771,7 @@ Deno.serve(async (req) => {
       });
     }
 
-    const anonKey = Deno.env.get('SUPABASE_ANON_KEY')!;
+    const anonKey = Deno.env.get('SUPABASE_PUBLISHABLE_KEY')!;
     const anonClient = createClient(supabaseUrl, anonKey);
     const { data: { user } } = await anonClient.auth.getUser(authHeader.replace('Bearer ', ''));
     if (!user) {
@@ -794,7 +794,7 @@ Deno.serve(async (req) => {
     let panelPass = panel.senha;
     if (panelUser === 'vault' || panelPass === 'vault') {
       const userToken = authHeader!.replace('Bearer ', '');
-      const vaultClient = createClient(supabaseUrl, Deno.env.get('SUPABASE_ANON_KEY')!, {
+      const vaultClient = createClient(supabaseUrl, Deno.env.get('SUPABASE_PUBLISHABLE_KEY')!, {
         global: { headers: { Authorization: `Bearer ${userToken}` } },
       });
       const [uRes, sRes] = await Promise.all([

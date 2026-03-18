@@ -7,7 +7,7 @@ async function resolveVaultCreds(supabase: SupabaseClient, panel: any, userToken
     let rpcName = 'admin_get_gateway_secret';
     if (userToken) {
       const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
-      const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY')!;
+      const supabaseAnonKey = Deno.env.get('SUPABASE_PUBLISHABLE_KEY')!;
       vaultClient = createClient(supabaseUrl, supabaseAnonKey, {
         global: { headers: { Authorization: `Bearer ${userToken}` } },
       });
@@ -1052,7 +1052,7 @@ Deno.serve(async (req) => {
       if (result.success) {
         const authHeader = req.headers.get('authorization');
         if (authHeader) {
-          const anonClient = createClient(supabaseUrl, Deno.env.get('SUPABASE_ANON_KEY')!);
+          const anonClient = createClient(supabaseUrl, Deno.env.get('SUPABASE_PUBLISHABLE_KEY')!);
           const { data: { user } } = await anonClient.auth.getUser(authHeader.replace('Bearer ', ''));
           if (user?.id) {
             await supabase.from('logs_painel').insert({
