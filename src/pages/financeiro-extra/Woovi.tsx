@@ -7,6 +7,7 @@ import { Switch } from "@/components/ui/switch";
 import { Key, Copy, ExternalLink, Settings, Webhook } from "lucide-react";
 import { toast } from "sonner";
 import { useWoovi } from "@/hooks/useWoovi";
+import { SUPABASE_URL } from "@/lib/constants";
 
 export default function Woovi() {
   const [appId, setAppId] = useState("");
