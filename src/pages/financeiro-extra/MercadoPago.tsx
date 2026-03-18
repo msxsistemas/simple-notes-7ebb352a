@@ -17,6 +17,7 @@ import {
   Unplug,
 } from "lucide-react";
 import { toast } from "sonner";
+import { SUPABASE_URL } from "@/lib/constants";
 import { useMercadoPago } from "@/hooks/useMercadoPago";
 
 export default function MercadoPago() {
