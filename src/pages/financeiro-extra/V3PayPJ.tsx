@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
 import { Key, Copy, ExternalLink, Settings } from "lucide-react";
 import { toast } from "sonner";
+import { SUPABASE_URL } from "@/lib/constants";
 import { useV3PayPJ } from "@/hooks/useV3PayPJ";
 
 export default function V3PayPJ() {
