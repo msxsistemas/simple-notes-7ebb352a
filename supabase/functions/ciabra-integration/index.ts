@@ -25,7 +25,7 @@ async function storeVaultSecret(userToken: string, userId: string, gateway: stri
   const { createClient } = await import("npm:@supabase/supabase-js@2");
   const userClient = createClient(
     Deno.env.get('SUPABASE_URL') ?? '',
-    Deno.env.get('SUPABASE_ANON_KEY') ?? '',
+    Deno.env.get('SUPABASE_PUBLISHABLE_KEY') ?? '',
     { global: { headers: { Authorization: `Bearer ${userToken}` } } }
   );
   const { error } = await userClient.rpc('store_gateway_secret', {
