@@ -12,7 +12,7 @@ export default function Woovi() {
   const [appId, setAppId] = useState("");
   const { isConfigured, loading, configureWoovi } = useWoovi();
 
-  const webhookUrl = `https://dxxfablfqigoewcfmjzl.supabase.co/functions/v1/woovi-integration`;
+  const webhookUrl = `${import.meta.env.VITE_SUPABASE_URL || "https://sqfmckhgjoojfuaovkbw.supabase.co"}/functions/v1/woovi-integration`;
 
   useEffect(() => {
     document.title = "Woovi - Gateway de Pagamentos | Gestor MSX";

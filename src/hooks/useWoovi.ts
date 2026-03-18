@@ -1,5 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '@/integrations/supabase/client';
+
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || "https://sqfmckhgjoojfuaovkbw.supabase.co";
 import { useCurrentUser } from '@/hooks/useCurrentUser';
 import { toast } from 'sonner';
 
