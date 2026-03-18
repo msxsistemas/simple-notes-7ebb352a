@@ -10,7 +10,7 @@ export type Database = {
   // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "14.1"
+    PostgrestVersion: "14.4"
   }
   public: {
     Tables: {
@@ -20,7 +20,7 @@ export type Database = {
           comissao_percentual: number
           comissao_tipo: string
           comissao_valor: number
-          created_at: string
+          created_at: string | null
           fatura_id: string | null
           id: string
           nivel: number
@@ -32,7 +32,7 @@ export type Database = {
           comissao_percentual?: number
           comissao_tipo?: string
           comissao_valor?: number
-          created_at?: string
+          created_at?: string | null
           fatura_id?: string | null
           id?: string
           nivel?: number
@@ -44,7 +44,7 @@ export type Database = {
           comissao_percentual?: number
           comissao_tipo?: string
           comissao_valor?: number
-          created_at?: string
+          created_at?: string | null
           fatura_id?: string | null
           id?: string
           nivel?: number
@@ -78,7 +78,7 @@ export type Database = {
           n2_valor: number
           n3_tipo: string
           n3_valor: number
-          updated_at: string
+          updated_at: string | null
         }
         Insert: {
           ativo?: boolean
@@ -89,7 +89,7 @@ export type Database = {
           n2_valor?: number
           n3_tipo?: string
           n3_valor?: number
-          updated_at?: string
+          updated_at?: string | null
         }
         Update: {
           ativo?: boolean
@@ -100,7 +100,7 @@ export type Database = {
           n2_valor?: number
           n3_tipo?: string
           n3_valor?: number
-          updated_at?: string
+          updated_at?: string | null
         }
         Relationships: []
       }
@@ -115,11 +115,11 @@ export type Database = {
           comissao_recorrente: boolean
           comissao_tipo: string
           comissao_valor: number
-          created_at: string
+          created_at: string | null
           id: string
           nivel: number
           pai_id: string | null
-          updated_at: string
+          updated_at: string | null
           user_id: string
         }
         Insert: {
@@ -132,11 +132,11 @@ export type Database = {
           comissao_recorrente?: boolean
           comissao_tipo?: string
           comissao_valor?: number
-          created_at?: string
+          created_at?: string | null
           id?: string
           nivel?: number
           pai_id?: string | null
-          updated_at?: string
+          updated_at?: string | null
           user_id: string
         }
         Update: {
@@ -149,11 +149,11 @@ export type Database = {
           comissao_recorrente?: boolean
           comissao_tipo?: string
           comissao_valor?: number
-          created_at?: string
+          created_at?: string | null
           id?: string
           nivel?: number
           pai_id?: string | null
-          updated_at?: string
+          updated_at?: string | null
           user_id?: string
         }
         Relationships: [
@@ -179,9 +179,9 @@ export type Database = {
           codigo_convite: string | null
           comissao_tipo: string
           comissao_valor: number
-          created_at: string
+          created_at: string | null
           id: string
-          updated_at: string
+          updated_at: string | null
           user_id: string
         }
         Insert: {
@@ -189,9 +189,9 @@ export type Database = {
           codigo_convite?: string | null
           comissao_tipo?: string
           comissao_valor?: number
-          created_at?: string
+          created_at?: string | null
           id?: string
-          updated_at?: string
+          updated_at?: string | null
           user_id: string
         }
         Update: {
@@ -199,9 +199,9 @@ export type Database = {
           codigo_convite?: string | null
           comissao_tipo?: string
           comissao_valor?: number
-          created_at?: string
+          created_at?: string | null
           id?: string
-          updated_at?: string
+          updated_at?: string | null
           user_id?: string
         }
         Relationships: []
@@ -236,28 +236,28 @@ export type Database = {
       asaas_config: {
         Row: {
           api_key_hash: string
-          created_at: string
+          created_at: string | null
           id: string
-          is_configured: boolean
-          updated_at: string
+          is_configured: boolean | null
+          updated_at: string | null
           user_id: string
           webhook_url: string | null
         }
         Insert: {
           api_key_hash: string
-          created_at?: string
+          created_at?: string | null
           id?: string
-          is_configured?: boolean
-          updated_at?: string
+          is_configured?: boolean | null
+          updated_at?: string | null
           user_id: string
           webhook_url?: string | null
         }
         Update: {
           api_key_hash?: string
-          created_at?: string
+          created_at?: string | null
           id?: string
-          is_configured?: boolean
-          updated_at?: string
+          is_configured?: boolean | null
+          updated_at?: string | null
           user_id?: string
           webhook_url?: string | null
         }
@@ -267,8 +267,8 @@ export type Database = {
         Row: {
           access_token: string
           cookies: string | null
-          created_at: string
-          expires_at: string
+          created_at: string | null
+          expires_at: string | null
           extra_data: Json | null
           id: string
           painel_id: string
@@ -279,8 +279,8 @@ export type Database = {
         Insert: {
           access_token: string
           cookies?: string | null
-          created_at?: string
-          expires_at?: string
+          created_at?: string | null
+          expires_at?: string | null
           extra_data?: Json | null
           id?: string
           painel_id: string
@@ -291,8 +291,8 @@ export type Database = {
         Update: {
           access_token?: string
           cookies?: string | null
-          created_at?: string
-          expires_at?: string
+          created_at?: string | null
+          expires_at?: string | null
           extra_data?: Json | null
           id?: string
           painel_id?: string
@@ -304,36 +304,36 @@ export type Database = {
       }
       checkout_config: {
         Row: {
-          created_at: string
-          credit_card_enabled: boolean
+          created_at: string | null
+          credit_card_enabled: boolean | null
           gateway_ativo: string
           id: string
-          pix_enabled: boolean
-          pix_manual_enabled: boolean
+          pix_enabled: boolean | null
+          pix_manual_enabled: boolean | null
           pix_manual_key: string | null
-          updated_at: string
+          updated_at: string | null
           user_id: string
         }
         Insert: {
-          created_at?: string
-          credit_card_enabled?: boolean
+          created_at?: string | null
+          credit_card_enabled?: boolean | null
           gateway_ativo?: string
           id?: string
-          pix_enabled?: boolean
-          pix_manual_enabled?: boolean
+          pix_enabled?: boolean | null
+          pix_manual_enabled?: boolean | null
           pix_manual_key?: string | null
-          updated_at?: string
+          updated_at?: string | null
           user_id: string
         }
         Update: {
-          created_at?: string
-          credit_card_enabled?: boolean
+          created_at?: string | null
+          credit_card_enabled?: boolean | null
           gateway_ativo?: string
           id?: string
-          pix_enabled?: boolean
-          pix_manual_enabled?: boolean
+          pix_enabled?: boolean | null
+          pix_manual_enabled?: boolean | null
           pix_manual_key?: string | null
-          updated_at?: string
+          updated_at?: string | null
           user_id?: string
         }
         Relationships: []
@@ -341,31 +341,31 @@ export type Database = {
       ciabra_config: {
         Row: {
           api_key_hash: string
-          created_at: string
+          created_at: string | null
           id: string
           is_configured: boolean | null
           public_key_hash: string | null
-          updated_at: string
+          updated_at: string | null
           user_id: string
           webhook_url: string | null
         }
         Insert: {
           api_key_hash: string
-          created_at?: string
+          created_at?: string | null
           id?: string
           is_configured?: boolean | null
           public_key_hash?: string | null
-          updated_at?: string
+          updated_at?: string | null
           user_id: string
           webhook_url?: string | null
         }
         Update: {
           api_key_hash?: string
-          created_at?: string
+          created_at?: string | null
           id?: string
           is_configured?: boolean | null
           public_key_hash?: string | null
-          updated_at?: string
+          updated_at?: string | null
           user_id?: string
           webhook_url?: string | null
         }
@@ -480,39 +480,39 @@ export type Database = {
         Row: {
           cliente_nome: string | null
           cliente_whatsapp: string
-          created_at: string
+          created_at: string | null
           gateway: string
           gateway_charge_id: string
           id: string
           renovado: boolean
           status: string
-          updated_at: string
+          updated_at: string | null
           user_id: string
           valor: number
         }
         Insert: {
           cliente_nome?: string | null
           cliente_whatsapp: string
-          created_at?: string
+          created_at?: string | null
           gateway: string
           gateway_charge_id: string
           id?: string
           renovado?: boolean
           status?: string
-          updated_at?: string
+          updated_at?: string | null
           user_id: string
           valor: number
         }
         Update: {
           cliente_nome?: string | null
           cliente_whatsapp?: string
-          created_at?: string
+          created_at?: string | null
           gateway?: string
           gateway_charge_id?: string
           id?: string
           renovado?: boolean
           status?: string
-          updated_at?: string
+          updated_at?: string | null
           user_id?: string
           valor?: number
         }
@@ -520,40 +520,40 @@ export type Database = {
       }
       cupons: {
         Row: {
-          ativo: boolean
+          ativo: boolean | null
           codigo: string
-          created_at: string
+          created_at: string | null
           desconto: number
           id: string
           limite_uso: number | null
           tipo_desconto: string
-          updated_at: string
+          updated_at: string | null
           user_id: string
           usos_atuais: number
           validade: string | null
         }
         Insert: {
-          ativo?: boolean
+          ativo?: boolean | null
           codigo: string
-          created_at?: string
+          created_at?: string | null
           desconto?: number
           id?: string
           limite_uso?: number | null
           tipo_desconto?: string
-          updated_at?: string
+          updated_at?: string | null
           user_id: string
           usos_atuais?: number
           validade?: string | null
         }
         Update: {
-          ativo?: boolean
+          ativo?: boolean | null
           codigo?: string
-          created_at?: string
+          created_at?: string | null
           desconto?: number
           id?: string
           limite_uso?: number | null
           tipo_desconto?: string
-          updated_at?: string
+          updated_at?: string | null
           user_id?: string
           usos_atuais?: number
           validade?: string | null
@@ -562,43 +562,43 @@ export type Database = {
       }
       envio_config: {
         Row: {
-          configuracoes_ativas: boolean
-          created_at: string
+          configuracoes_ativas: boolean | null
+          created_at: string | null
           id: string
           limite_diario: number | null
           limite_lote: number
           pausa_prolongada: number
           tempo_maximo: number
           tempo_minimo: number
-          updated_at: string
+          updated_at: string | null
           user_id: string
-          variar_intervalo: boolean
+          variar_intervalo: boolean | null
         }
         Insert: {
-          configuracoes_ativas?: boolean
-          created_at?: string
+          configuracoes_ativas?: boolean | null
+          created_at?: string | null
           id?: string
           limite_diario?: number | null
           limite_lote?: number
           pausa_prolongada?: number
           tempo_maximo?: number
           tempo_minimo?: number
-          updated_at?: string
+          updated_at?: string | null
           user_id: string
-          variar_intervalo?: boolean
+          variar_intervalo?: boolean | null
         }
         Update: {
-          configuracoes_ativas?: boolean
-          created_at?: string
+          configuracoes_ativas?: boolean | null
+          created_at?: string | null
           id?: string
           limite_diario?: number | null
           limite_lote?: number
           pausa_prolongada?: number
           tempo_maximo?: number
           tempo_minimo?: number
-          updated_at?: string
+          updated_at?: string | null
           user_id?: string
-          variar_intervalo?: boolean
+          variar_intervalo?: boolean | null
         }
         Relationships: []
       }
@@ -607,7 +607,7 @@ export type Database = {
           cliente_id: string | null
           cliente_nome: string
           cliente_whatsapp: string
-          created_at: string
+          created_at: string | null
           cupom_codigo: string | null
           expires_at: string | null
           gateway: string | null
@@ -619,7 +619,7 @@ export type Database = {
           pix_qr_code: string | null
           plano_nome: string | null
           status: string
-          updated_at: string
+          updated_at: string | null
           user_id: string
           valor: number
           valor_original: number | null
@@ -628,7 +628,7 @@ export type Database = {
           cliente_id?: string | null
           cliente_nome: string
           cliente_whatsapp: string
-          created_at?: string
+          created_at?: string | null
           cupom_codigo?: string | null
           expires_at?: string | null
           gateway?: string | null
@@ -640,7 +640,7 @@ export type Database = {
           pix_qr_code?: string | null
           plano_nome?: string | null
           status?: string
-          updated_at?: string
+          updated_at?: string | null
           user_id: string
           valor: number
           valor_original?: number | null
@@ -649,7 +649,7 @@ export type Database = {
           cliente_id?: string | null
           cliente_nome?: string
           cliente_whatsapp?: string
-          created_at?: string
+          created_at?: string | null
           cupom_codigo?: string | null
           expires_at?: string | null
           gateway?: string | null
@@ -661,7 +661,7 @@ export type Database = {
           pix_qr_code?: string | null
           plano_nome?: string | null
           status?: string
-          updated_at?: string
+          updated_at?: string | null
           user_id?: string
           valor?: number
           valor_original?: number | null
@@ -678,39 +678,39 @@ export type Database = {
       }
       gateway_rotation_config: {
         Row: {
-          ativo: boolean
+          ativo: boolean | null
           contador_atual: number
-          created_at: string
+          created_at: string | null
           gateway_a: string
           gateway_atual: string
           gateway_b: string
           id: string
           intervalo: number
-          updated_at: string
+          updated_at: string | null
           user_id: string
         }
         Insert: {
-          ativo?: boolean
+          ativo?: boolean | null
           contador_atual?: number
-          created_at?: string
+          created_at?: string | null
           gateway_a?: string
           gateway_atual?: string
           gateway_b?: string
           id?: string
           intervalo?: number
-          updated_at?: string
+          updated_at?: string | null
           user_id: string
         }
         Update: {
-          ativo?: boolean
+          ativo?: boolean | null
           contador_atual?: number
-          created_at?: string
+          created_at?: string | null
           gateway_a?: string
           gateway_atual?: string
           gateway_b?: string
           id?: string
           intervalo?: number
-          updated_at?: string
+          updated_at?: string | null
           user_id?: string
         }
         Relationships: []
@@ -720,36 +720,36 @@ export type Database = {
           bonus: number
           cliente_indicado_id: string | null
           codigo_indicacao: string
-          created_at: string
+          created_at: string | null
           id: string
           indicado_email: string | null
           indicado_nome: string | null
           status: string
-          updated_at: string
+          updated_at: string | null
           user_id: string
         }
         Insert: {
           bonus?: number
           cliente_indicado_id?: string | null
           codigo_indicacao: string
-          created_at?: string
+          created_at?: string | null
           id?: string
           indicado_email?: string | null
           indicado_nome?: string | null
           status?: string
-          updated_at?: string
+          updated_at?: string | null
           user_id: string
         }
         Update: {
           bonus?: number
           cliente_indicado_id?: string | null
           codigo_indicacao?: string
-          created_at?: string
+          created_at?: string | null
           id?: string
           indicado_email?: string | null
           indicado_nome?: string | null
           status?: string
-          updated_at?: string
+          updated_at?: string | null
           user_id?: string
         }
         Relationships: [
@@ -801,7 +801,7 @@ export type Database = {
       indicacoes_descontos_log: {
         Row: {
           ciclo: number
-          created_at: string
+          created_at: string | null
           fatura_id: string | null
           id: string
           indicador_id: string
@@ -814,7 +814,7 @@ export type Database = {
         }
         Insert: {
           ciclo?: number
-          created_at?: string
+          created_at?: string | null
           fatura_id?: string | null
           id?: string
           indicador_id: string
@@ -827,7 +827,7 @@ export type Database = {
         }
         Update: {
           ciclo?: number
-          created_at?: string
+          created_at?: string | null
           fatura_id?: string | null
           id?: string
           indicador_id?: string
@@ -851,21 +851,21 @@ export type Database = {
       logs_painel: {
         Row: {
           acao: string
-          created_at: string
+          created_at: string | null
           id: string
           tipo: string
           user_id: string
         }
         Insert: {
           acao: string
-          created_at?: string
+          created_at?: string | null
           id?: string
           tipo?: string
           user_id: string
         }
         Update: {
           acao?: string
-          created_at?: string
+          created_at?: string | null
           id?: string
           tipo?: string
           user_id?: string
@@ -875,7 +875,7 @@ export type Database = {
       logs_sistema: {
         Row: {
           componente: string
-          created_at: string
+          created_at: string | null
           evento: string
           id: string
           nivel: string
@@ -883,7 +883,7 @@ export type Database = {
         }
         Insert: {
           componente: string
-          created_at?: string
+          created_at?: string | null
           evento: string
           id?: string
           nivel?: string
@@ -891,7 +891,7 @@ export type Database = {
         }
         Update: {
           componente?: string
-          created_at?: string
+          created_at?: string | null
           evento?: string
           id?: string
           nivel?: string
@@ -962,31 +962,31 @@ export type Database = {
       mercadopago_config: {
         Row: {
           access_token_hash: string
-          created_at: string
+          created_at: string | null
           id: string
           is_configured: boolean | null
           public_key_hash: string | null
-          updated_at: string
+          updated_at: string | null
           user_id: string
           webhook_url: string | null
         }
         Insert: {
           access_token_hash: string
-          created_at?: string
+          created_at?: string | null
           id?: string
           is_configured?: boolean | null
           public_key_hash?: string | null
-          updated_at?: string
+          updated_at?: string | null
           user_id: string
           webhook_url?: string | null
         }
         Update: {
           access_token_hash?: string
-          created_at?: string
+          created_at?: string | null
           id?: string
           is_configured?: boolean | null
           public_key_hash?: string | null
-          updated_at?: string
+          updated_at?: string | null
           user_id?: string
           webhook_url?: string | null
         }
@@ -994,9 +994,9 @@ export type Database = {
       }
       notificacoes: {
         Row: {
-          created_at: string
+          created_at: string | null
           id: string
-          lida: boolean
+          lida: boolean | null
           link: string | null
           mensagem: string
           tipo: string
@@ -1004,9 +1004,9 @@ export type Database = {
           user_id: string
         }
         Insert: {
-          created_at?: string
+          created_at?: string | null
           id?: string
-          lida?: boolean
+          lida?: boolean | null
           link?: string | null
           mensagem: string
           tipo?: string
@@ -1014,9 +1014,9 @@ export type Database = {
           user_id: string
         }
         Update: {
-          created_at?: string
+          created_at?: string | null
           id?: string
-          lida?: boolean
+          lida?: boolean | null
           link?: string | null
           mensagem?: string
           tipo?: string
@@ -1028,7 +1028,7 @@ export type Database = {
       notificacoes_config: {
         Row: {
           api_chatbot: string | null
-          created_at: string
+          created_at: string | null
           descontar_saldo_fatura: boolean
           dias_apos_vencimento: number
           dias_gerar_fatura: number
@@ -1042,14 +1042,14 @@ export type Database = {
           notif_indicacao: boolean
           notif_vencendo_hoje: boolean
           quantidade_mensagens: number
-          updated_at: string
+          updated_at: string | null
           user_id: string
           valor_taxa_pagamento: number
           whatsapp_pagamentos: string | null
         }
         Insert: {
           api_chatbot?: string | null
-          created_at?: string
+          created_at?: string | null
           descontar_saldo_fatura?: boolean
           dias_apos_vencimento?: number
           dias_gerar_fatura?: number
@@ -1063,14 +1063,14 @@ export type Database = {
           notif_indicacao?: boolean
           notif_vencendo_hoje?: boolean
           quantidade_mensagens?: number
-          updated_at?: string
+          updated_at?: string | null
           user_id: string
           valor_taxa_pagamento?: number
           whatsapp_pagamentos?: string | null
         }
         Update: {
           api_chatbot?: string | null
-          created_at?: string
+          created_at?: string | null
           descontar_saldo_fatura?: boolean
           dias_apos_vencimento?: number
           dias_gerar_fatura?: number
@@ -1084,7 +1084,7 @@ export type Database = {
           notif_indicacao?: boolean
           notif_vencendo_hoje?: boolean
           quantidade_mensagens?: number
-          updated_at?: string
+          updated_at?: string | null
           user_id?: string
           valor_taxa_pagamento?: number
           whatsapp_pagamentos?: string | null
@@ -1094,7 +1094,7 @@ export type Database = {
       paineis_integracao: {
         Row: {
           auto_renovacao: boolean
-          created_at: string
+          created_at: string | null
           dispositivo: string | null
           dispositivo_id: string | null
           id: string
@@ -1103,7 +1103,7 @@ export type Database = {
           proxy_session_id: string | null
           senha: string
           status: string
-          updated_at: string
+          updated_at: string | null
           url: string
           user_id: string
           usuario: string
@@ -1111,7 +1111,7 @@ export type Database = {
         }
         Insert: {
           auto_renovacao?: boolean
-          created_at?: string
+          created_at?: string | null
           dispositivo?: string | null
           dispositivo_id?: string | null
           id?: string
@@ -1120,7 +1120,7 @@ export type Database = {
           proxy_session_id?: string | null
           senha: string
           status?: string
-          updated_at?: string
+          updated_at?: string | null
           url: string
           user_id: string
           usuario: string
@@ -1128,7 +1128,7 @@ export type Database = {
         }
         Update: {
           auto_renovacao?: boolean
-          created_at?: string
+          created_at?: string | null
           dispositivo?: string | null
           dispositivo_id?: string | null
           id?: string
@@ -1137,7 +1137,7 @@ export type Database = {
           proxy_session_id?: string | null
           senha?: string
           status?: string
-          updated_at?: string
+          updated_at?: string | null
           url?: string
           user_id?: string
           usuario?: string
@@ -1244,53 +1244,53 @@ export type Database = {
         Row: {
           avatar_url: string | null
           chave_pix_indicacao: string | null
-          created_at: string
+          created_at: string | null
           id: string
           nome_completo: string | null
           nome_empresa: string | null
           telefone: string | null
-          updated_at: string
+          updated_at: string | null
           user_id: string
         }
         Insert: {
           avatar_url?: string | null
           chave_pix_indicacao?: string | null
-          created_at?: string
+          created_at?: string | null
           id?: string
           nome_completo?: string | null
           nome_empresa?: string | null
           telefone?: string | null
-          updated_at?: string
+          updated_at?: string | null
           user_id: string
         }
         Update: {
           avatar_url?: string | null
           chave_pix_indicacao?: string | null
-          created_at?: string
+          created_at?: string | null
           id?: string
           nome_completo?: string | null
           nome_empresa?: string | null
           telefone?: string | null
-          updated_at?: string
+          updated_at?: string | null
           user_id?: string
         }
         Relationships: []
       }
       registration_ips: {
         Row: {
-          created_at: string
+          created_at: string | null
           id: string
           ip_address: string
           user_id: string
         }
         Insert: {
-          created_at?: string
+          created_at?: string | null
           id?: string
           ip_address: string
           user_id: string
         }
         Update: {
-          created_at?: string
+          created_at?: string | null
           id?: string
           ip_address?: string
           user_id?: string
@@ -1300,31 +1300,31 @@ export type Database = {
       saques_indicacao: {
         Row: {
           chave_pix: string
-          created_at: string
+          created_at: string | null
           id: string
           motivo_rejeicao: string | null
           status: string
-          updated_at: string
+          updated_at: string | null
           user_id: string
           valor: number
         }
         Insert: {
           chave_pix: string
-          created_at?: string
+          created_at?: string | null
           id?: string
           motivo_rejeicao?: string | null
           status?: string
-          updated_at?: string
+          updated_at?: string | null
           user_id: string
           valor: number
         }
         Update: {
           chave_pix?: string
-          created_at?: string
+          created_at?: string | null
           id?: string
           motivo_rejeicao?: string | null
           status?: string
-          updated_at?: string
+          updated_at?: string | null
           user_id?: string
           valor?: number
         }
@@ -1343,7 +1343,7 @@ export type Database = {
           suporte_whatsapp: string | null
           termos_url: string | null
           trial_dias: number | null
-          updated_at: string
+          updated_at: string | null
         }
         Insert: {
           cor_primaria?: string | null
@@ -1357,7 +1357,7 @@ export type Database = {
           suporte_whatsapp?: string | null
           termos_url?: string | null
           trial_dias?: number | null
-          updated_at?: string
+          updated_at?: string | null
         }
         Update: {
           cor_primaria?: string | null
@@ -1371,7 +1371,7 @@ export type Database = {
           suporte_whatsapp?: string | null
           termos_url?: string | null
           trial_dias?: number | null
-          updated_at?: string
+          updated_at?: string | null
         }
         Relationships: []
       }
@@ -1379,77 +1379,77 @@ export type Database = {
         Row: {
           ambiente: string
           api_key_hash: string | null
-          ativo: boolean
+          ativo: boolean | null
           configuracoes: Json | null
-          created_at: string
+          created_at: string | null
           id: string
           nome: string
           provedor: string
           public_key_hash: string | null
-          updated_at: string
+          updated_at: string | null
           webhook_url: string | null
         }
         Insert: {
           ambiente?: string
           api_key_hash?: string | null
-          ativo?: boolean
+          ativo?: boolean | null
           configuracoes?: Json | null
-          created_at?: string
+          created_at?: string | null
           id?: string
           nome: string
           provedor: string
           public_key_hash?: string | null
-          updated_at?: string
+          updated_at?: string | null
           webhook_url?: string | null
         }
         Update: {
           ambiente?: string
           api_key_hash?: string | null
-          ativo?: boolean
+          ativo?: boolean | null
           configuracoes?: Json | null
-          created_at?: string
+          created_at?: string | null
           id?: string
           nome?: string
           provedor?: string
           public_key_hash?: string | null
-          updated_at?: string
+          updated_at?: string | null
           webhook_url?: string | null
         }
         Relationships: []
       }
       system_indicacoes_config: {
         Row: {
-          ativo: boolean
+          ativo: boolean | null
           descricao: string | null
           id: number
           tipo_bonus: string
-          updated_at: string
+          updated_at: string | null
           valor_bonus: number
         }
         Insert: {
-          ativo?: boolean
+          ativo?: boolean | null
           descricao?: string | null
           id?: number
           tipo_bonus?: string
-          updated_at?: string
+          updated_at?: string | null
           valor_bonus?: number
         }
         Update: {
-          ativo?: boolean
+          ativo?: boolean | null
           descricao?: string | null
           id?: number
           tipo_bonus?: string
-          updated_at?: string
+          updated_at?: string | null
           valor_bonus?: number
         }
         Relationships: []
       }
       system_plans: {
         Row: {
-          ativo: boolean
-          created_at: string
+          ativo: boolean | null
+          created_at: string | null
           descricao: string | null
-          destaque: boolean
+          destaque: boolean | null
           id: string
           intervalo: string
           limite_clientes: number | null
@@ -1459,14 +1459,14 @@ export type Database = {
           nome: string
           ordem: number
           recursos: Json | null
-          updated_at: string
+          updated_at: string | null
           valor: number
         }
         Insert: {
-          ativo?: boolean
-          created_at?: string
+          ativo?: boolean | null
+          created_at?: string | null
           descricao?: string | null
-          destaque?: boolean
+          destaque?: boolean | null
           id?: string
           intervalo?: string
           limite_clientes?: number | null
@@ -1476,14 +1476,14 @@ export type Database = {
           nome: string
           ordem?: number
           recursos?: Json | null
-          updated_at?: string
+          updated_at?: string | null
           valor?: number
         }
         Update: {
-          ativo?: boolean
-          created_at?: string
+          ativo?: boolean | null
+          created_at?: string | null
           descricao?: string | null
-          destaque?: boolean
+          destaque?: boolean | null
           id?: string
           intervalo?: string
           limite_clientes?: number | null
@@ -1493,7 +1493,7 @@ export type Database = {
           nome?: string
           ordem?: number
           recursos?: Json | null
-          updated_at?: string
+          updated_at?: string | null
           valor?: number
         }
         Relationships: []
@@ -1504,51 +1504,51 @@ export type Database = {
           id: string
           nome: string
           status: string
-          updated_at: string
+          updated_at: string | null
         }
         Insert: {
           descricao?: string | null
           id: string
           nome: string
           status?: string
-          updated_at?: string
+          updated_at?: string | null
         }
         Update: {
           descricao?: string | null
           id?: string
           nome?: string
           status?: string
-          updated_at?: string
+          updated_at?: string | null
         }
         Relationships: []
       }
       system_templates: {
         Row: {
-          ativo: boolean
-          created_at: string
+          ativo: boolean | null
+          created_at: string | null
           id: string
           mensagem: string
           nome: string
           tipo: string
-          updated_at: string
+          updated_at: string | null
         }
         Insert: {
-          ativo?: boolean
-          created_at?: string
+          ativo?: boolean | null
+          created_at?: string | null
           id?: string
           mensagem: string
           nome: string
           tipo: string
-          updated_at?: string
+          updated_at?: string | null
         }
         Update: {
-          ativo?: boolean
-          created_at?: string
+          ativo?: boolean | null
+          created_at?: string | null
           id?: string
           mensagem?: string
           nome?: string
           tipo?: string
-          updated_at?: string
+          updated_at?: string | null
         }
         Relationships: []
       }
@@ -1677,36 +1677,36 @@ export type Database = {
       }
       user_subscriptions: {
         Row: {
-          created_at: string
+          created_at: string | null
           expira_em: string | null
           gateway_subscription_id: string | null
           id: string
           inicio: string
           plan_id: string | null
           status: string
-          updated_at: string
+          updated_at: string | null
           user_id: string
         }
         Insert: {
-          created_at?: string
+          created_at?: string | null
           expira_em?: string | null
           gateway_subscription_id?: string | null
           id?: string
           inicio?: string
           plan_id?: string | null
           status?: string
-          updated_at?: string
+          updated_at?: string | null
           user_id: string
         }
         Update: {
-          created_at?: string
+          created_at?: string | null
           expira_em?: string | null
           gateway_subscription_id?: string | null
           id?: string
           inicio?: string
           plan_id?: string | null
           status?: string
-          updated_at?: string
+          updated_at?: string | null
           user_id?: string
         }
         Relationships: [
@@ -1722,28 +1722,28 @@ export type Database = {
       v3pay_config: {
         Row: {
           api_token_hash: string
-          created_at: string
+          created_at: string | null
           id: string
           is_configured: boolean | null
-          updated_at: string
+          updated_at: string | null
           user_id: string
           webhook_url: string | null
         }
         Insert: {
           api_token_hash: string
-          created_at?: string
+          created_at?: string | null
           id?: string
           is_configured?: boolean | null
-          updated_at?: string
+          updated_at?: string | null
           user_id: string
           webhook_url?: string | null
         }
         Update: {
           api_token_hash?: string
-          created_at?: string
+          created_at?: string | null
           id?: string
           is_configured?: boolean | null
-          updated_at?: string
+          updated_at?: string | null
           user_id?: string
           webhook_url?: string | null
         }
@@ -1752,28 +1752,28 @@ export type Database = {
       v3pay_pj_config: {
         Row: {
           api_token_hash: string
-          created_at: string
+          created_at: string | null
           id: string
           is_configured: boolean | null
-          updated_at: string
+          updated_at: string | null
           user_id: string
           webhook_url: string | null
         }
         Insert: {
           api_token_hash: string
-          created_at?: string
+          created_at?: string | null
           id?: string
           is_configured?: boolean | null
-          updated_at?: string
+          updated_at?: string | null
           user_id: string
           webhook_url?: string | null
         }
         Update: {
           api_token_hash?: string
-          created_at?: string
+          created_at?: string | null
           id?: string
           is_configured?: boolean | null
-          updated_at?: string
+          updated_at?: string | null
           user_id?: string
           webhook_url?: string | null
         }
@@ -1781,7 +1781,7 @@ export type Database = {
       }
       whatsapp_messages: {
         Row: {
-          created_at: string
+          created_at: string | null
           delivered_at: string | null
           error_message: string | null
           id: string
@@ -1791,14 +1791,13 @@ export type Database = {
           phone: string
           read_at: string | null
           scheduled_for: string | null
-          sent_at: string
+          sent_at: string | null
           session_id: string
-          status: string
-          updated_at: string
-          user_id: string
+          status: string | null
+          user_id: string | null
         }
         Insert: {
-          created_at?: string
+          created_at?: string | null
           delivered_at?: string | null
           error_message?: string | null
           id?: string
@@ -1808,14 +1807,13 @@ export type Database = {
           phone: string
           read_at?: string | null
           scheduled_for?: string | null
-          sent_at?: string
+          sent_at?: string | null
           session_id: string
-          status?: string
-          updated_at?: string
-          user_id: string
+          status?: string | null
+          user_id?: string | null
         }
         Update: {
-          created_at?: string
+          created_at?: string | null
           delivered_at?: string | null
           error_message?: string | null
           id?: string
@@ -1825,83 +1823,52 @@ export type Database = {
           phone?: string
           read_at?: string | null
           scheduled_for?: string | null
-          sent_at?: string
+          sent_at?: string | null
           session_id?: string
-          status?: string
-          updated_at?: string
-          user_id?: string
+          status?: string | null
+          user_id?: string | null
         }
         Relationships: []
       }
       whatsapp_sessions: {
         Row: {
+          connected_at: string | null
           created_at: string | null
           device_name: string | null
+          disconnected_at: string | null
           id: string
           last_activity: string | null
           phone_number: string | null
           qr_code: string | null
-          session_data: Json | null
           session_id: string
           status: string | null
-          updated_at: string | null
-          user_id: string | null
+          user_id: string
         }
         Insert: {
+          connected_at?: string | null
           created_at?: string | null
           device_name?: string | null
+          disconnected_at?: string | null
           id?: string
           last_activity?: string | null
           phone_number?: string | null
           qr_code?: string | null
-          session_data?: Json | null
           session_id: string
           status?: string | null
-          updated_at?: string | null
-          user_id?: string | null
+          user_id: string
         }
         Update: {
+          connected_at?: string | null
           created_at?: string | null
           device_name?: string | null
+          disconnected_at?: string | null
           id?: string
           last_activity?: string | null
           phone_number?: string | null
           qr_code?: string | null
-          session_data?: Json | null
           session_id?: string
           status?: string | null
-          updated_at?: string | null
-          user_id?: string | null
-        }
-        Relationships: []
-      }
-      woovi_config: {
-        Row: {
-          app_id_hash: string
-          created_at: string
-          id: string
-          is_configured: boolean | null
-          updated_at: string
-          user_id: string
-          webhook_url: string | null
-        }
-        Insert: {
-          app_id_hash?: string
-          created_at?: string
-          id?: string
-          is_configured?: boolean | null
-          updated_at?: string
-          user_id: string
-          webhook_url?: string | null
-        }
-        Update: {
-          app_id_hash?: string
-          created_at?: string
-          id?: string
-          is_configured?: boolean | null
-          updated_at?: string
           user_id?: string
-          webhook_url?: string | null
         }
         Relationships: []
       }
@@ -1953,7 +1920,7 @@ export type Database = {
       }
     }
     Enums: {
-      app_role: "admin" | "user"
+      app_role: "admin" | "moderator" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -2081,7 +2048,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      app_role: ["admin", "user"],
+      app_role: ["admin", "moderator", "user"],
     },
   },
 } as const
